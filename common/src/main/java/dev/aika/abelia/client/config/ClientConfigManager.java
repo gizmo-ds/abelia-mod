@@ -1,6 +1,7 @@
 package dev.aika.abelia.client.config;
 
 import dev.aika.abelia.AbeliaConstants;
+import dev.aika.abelia.annotation.config.LoaderSpecific;
 import dev.aika.abelia.annotation.config.Range;
 import dev.aika.abelia.annotation.config.gui.Category;
 import dev.aika.abelia.annotation.config.gui.RequiresRestart;
@@ -239,9 +240,16 @@ public class ClientConfigManager<T extends ConfigInitializer> {
 
         @SuppressWarnings("unchecked")
         private void genCategory(ConfigEntryBuilder builder, ConfigCategory category, CategoryKey categoryKey) {
+            final LoaderType currentLoader = LoaderType.getCurrentLoader();
             for (final Element element : categories.get(categoryKey)) {
-                Object defaultValue;
-                Object value;
+                if (element.field.isAnnotationPresent(LoaderSpecific.class)) {
+                    if (!Arrays.stream(element.field.getAnnotation(LoaderSpecific.class).value())
+                            .allMatch(value -> value.equals(currentLoader)))
+                        continue;
+                }
+
+                final Object defaultValue;
+                final Object value;
                 try {
                     defaultValue = element.getValue(manager.getDefaultConfig());
                     value = element.field.get(manager.get());
@@ -250,7 +258,7 @@ public class ClientConfigManager<T extends ConfigInitializer> {
                     continue;
                 }
 
-                var entryBuilder = fieldBuilder(element, builder, value);
+                final var entryBuilder = fieldBuilder(element, builder, value);
                 if (entryBuilder == null) continue;
                 entryBuilder.setSaveConsumer(v -> {
                     try {
@@ -259,10 +267,10 @@ public class ClientConfigManager<T extends ConfigInitializer> {
                         log.warn(marker, "Failed to set config value: {} = {}", element.fieldNameKey, v, e);
                     }
                 });
-                MutableComponent tooltipKey = element.tooltip();
+                final MutableComponent tooltipKey = element.tooltip();
                 if (tooltipKey != null) entryBuilder.setTooltip(tooltipKey);
                 if (defaultValue != null) entryBuilder.setDefaultValue(defaultValue);
-                var entry = entryBuilder.build();
+                final var entry = entryBuilder.build();
                 if (element.requiresRestart()) entry.setRequiresRestart(true);
                 category.addEntry(entry);
             }

@@ -59,7 +59,7 @@ class ConfigTest {
         conf.setConfig(new TestConfig2());
         var ccm = new ClientConfigManager<>(conf)
                 .setDonation(DonationPlatform.AFDIAN, AbeliaConstants.DonateUrl);
-        var screen = ccm.generateScreen(null);
+//        var screen = ccm.generateScreen(null);
         System.out.println(conf);
     }
 
@@ -78,7 +78,6 @@ class ConfigTest {
         @LoaderSpecific({LoaderType.NEOFORGE, LoaderType.FABRIC})
         String name = "Gizmo";
 
-        @Codec(ResourceLocationCodec.class)
         @LoaderSpecific(LoaderType.NEOFORGE)
         ResourceLocation resourceLocation = ResourceLocation.fromNamespaceAndPath("abelia", "apple");
 

@@ -24,5 +24,7 @@
   "config.abelia.demo.int_field": "Integer field",
   "config.abelia.demo.long_field": "Long field",
   "config.abelia.demo.float_field": "Float field",
-  "config.abelia.demo.double_field": "Double field"
+  "config.abelia.demo.double_field": "Double field",
+  "config.abelia.demo.fabric_only_field": "Fabric only field",
+  "config.abelia.demo.neoforge_only_field": "Neoforge only field"
 }

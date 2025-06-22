@@ -7,7 +7,6 @@ plugins {
     id("architectury-plugin") version "3.4-SNAPSHOT"
     id("dev.architectury.loom") version "1.10-SNAPSHOT" apply false
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
-    id("me.shedaniel.unified-publishing") version "0.1.+"
     id("co.uzzu.dotenv.gradle") version "4.0.0"
     id("maven-publish")
 }
@@ -106,42 +105,6 @@ subprojects {
                         value = "token $giteaToken"
                     }
                     authentication { create("header", HttpHeaderAuthentication::class) }
-                }
-            }
-        }
-    }
-}
-
-unifiedPublishing {
-    project {
-        version.set(mod.version)
-        displayName.set("v${mod.version}")
-        gameVersions.add(mod.minecraft_version)
-        gameLoaders.set(mod.enabled_platforms)
-        releaseType.set(mod.release_type)
-
-        val modrinthToken: String = env.fetch("MODRINTH_TOKEN", "").trim()
-        val modrinthId: String = mod.prop("modrinth_id")
-        if (modrinthId.isNotEmpty() && modrinthToken.isNotEmpty()) {
-            modrinth {
-                token.set(modrinthToken)
-                id.set(modrinthId)
-
-                relations {
-                    optionals.add("cloth-config")
-                }
-            }
-        }
-
-        val curseforgeToken: String = env.fetch("CF_TOKEN", "").trim()
-        val curseforgeId: String = mod.prop("curseforge_id")
-        if (curseforgeId.isNotEmpty() && curseforgeToken.isNotEmpty()) {
-            curseforge {
-                token.set(curseforgeToken)
-                id.set(curseforgeId)
-
-                relations {
-                    optionals.add("cloth-config")
                 }
             }
         }

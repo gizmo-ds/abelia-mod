@@ -3,10 +3,12 @@ package dev.aika.abelia.config;
 import dev.aika.abelia.Abelia;
 import dev.aika.abelia.annotation.config.AbeliaConfig;
 import dev.aika.abelia.annotation.config.Comment;
+import dev.aika.abelia.annotation.config.LoaderSpecific;
 import dev.aika.abelia.annotation.config.Range;
 import dev.aika.abelia.annotation.config.gui.Category;
 import dev.aika.abelia.annotation.config.gui.Tooltip;
 import dev.aika.abelia.api.CaseFormat;
+import dev.aika.abelia.api.LoaderType;
 import dev.aika.abelia.config.codec.ResourceLocationCodec;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,4 +46,11 @@ public class ModConfig implements ConfigInitializer {
     private float floatField = 3.1415f;
     @Category("demo")
     private double doubleField = 3.1415;
+
+    @Category("demo")
+    @LoaderSpecific(LoaderType.FABRIC)
+    private boolean fabricOnlyField = true;
+    @Category("demo")
+    @LoaderSpecific(LoaderType.NEOFORGE)
+    private boolean neoforgeOnlyField = true;
 }

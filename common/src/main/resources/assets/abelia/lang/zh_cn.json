@@ -24,5 +24,7 @@
   "config.abelia.demo.int_field": "整数字段",
   "config.abelia.demo.long_field": "长整数字段",
   "config.abelia.demo.float_field": "浮点型字段",
-  "config.abelia.demo.double_field": "双精度浮点数字段"
+  "config.abelia.demo.double_field": "双精度浮点数字段",
+  "config.abelia.demo.fabric_only_field": "仅 Fabric 字段",
+  "config.abelia.demo.neoforge_only_field": "仅 Neoforge 字段"
 }
