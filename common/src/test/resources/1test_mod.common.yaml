@@ -1,0 +1,29 @@
+# 注释支持多行
+# 这是第二行❤️
+username: King
+location: abelia:banana
+range: 222
+# 这是一个开关
+the_switch: false
+float_value: 3.141592
+# This is a List :)
+list:
+  - Camellya
+  - Phoebe
+hash_set:
+  - '111'
+  - '222'
+  - '333'
+# This is an Array :)
+arr:
+  - Carlotta
+# Hehe
+sub_config:
+  # Hello
+  name: aaa
+  list:
+    - Carlotta
+  resource_location: abelia:banana
+color: '#FFFFFF'
+# test
+enum: BANANA

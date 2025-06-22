@@ -1,0 +1,12 @@
+package dev.aika.abelia.error;
+
+@SuppressWarnings("unused")
+public class SerializationException extends RuntimeException {
+    public SerializationException(String message) {
+        super(message);
+    }
+
+    public SerializationException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}

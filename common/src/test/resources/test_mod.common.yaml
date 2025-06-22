@@ -1,0 +1,31 @@
+# 这里也能添加注释
+---
+# 注释支持多行
+# 这是第二行❤️
+username: Gizmo
+resource_location: abelia:apple
+range: 5
+# 这是一个开关
+the_switch: true
+float_value: 3.14
+# This is a List :)
+list:
+- Carlotta
+- Encore
+- Camellya
+- Phoebe
+hash_set:
+- Jinhsi
+- Calcharo
+- Zani
+# This is an Array :)
+arr:
+- Carlotta
+- Encore
+- Camellya
+- Phoebe
+# Hehe
+sub_config: null
+color: '#FF0000'
+# test
+enum: APPLE

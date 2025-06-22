@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "dev.aika.abelia.mixin",
+  "plugin": "dev.aika.abelia.AbeliaMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+    "client.ScreenEffectRendererMixin",
+    "client.ScreenInvoker",
+    "client.TitleScreenMixin"
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

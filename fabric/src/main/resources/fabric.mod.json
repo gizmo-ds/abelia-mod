@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "abelia",
+  "version": "${version}",
+  "name": "Abelia",
+  "description": "Abelia Lib",
+  "authors": [
+    "Gizmo"
+  ],
+  "contact": {
+    "homepage": "https://github.com/gizmo-ds/abelia-mod",
+    "sources": "https://github.com/gizmo-ds/abelia-mod",
+    "issues": "https://github.com/gizmo-ds/abelia-mod/issues"
+  },
+  "license": "EPL-2.0",
+  "icon": "assets/abelia/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.aika.abelia.fabric.AbeliaFabric"
+    ],
+    "client": [
+      "dev.aika.abelia.fabric.client.AbeliaFabricClient"
+    ],
+    "modmenu": [
+      "dev.aika.abelia.fabric.compat.cloth.AbeliaModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "abelia-common.mixins.json",
+    "abelia.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.7",
+    "minecraft": "~1.21-",
+    "java": ">=21"
+  },
+  "suggests": {
+    "another-mod": "*",
+    "cloth-config": ">=15.0.130"
+  }
+}
