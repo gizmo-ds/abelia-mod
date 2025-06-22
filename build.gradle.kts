@@ -86,7 +86,7 @@ subprojects {
     publishing {
         publications {
             create<MavenPublication>("gitea") {
-                artifactId = base.archivesName.get()
+                artifactId = "${base.archivesName.get()}-${mod.minecraft_version}"
                 version = mod.version
 
                 from(components["java"])
