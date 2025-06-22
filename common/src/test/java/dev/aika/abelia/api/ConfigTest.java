@@ -79,7 +79,7 @@ class ConfigTest {
         String name = "Gizmo";
 
         @LoaderSpecific(LoaderType.NEOFORGE)
-        ResourceLocation resourceLocation = ResourceLocation.fromNamespaceAndPath("abelia", "apple");
+        ResourceLocation resourceLocation = new ResourceLocation("abelia", "apple");
 
         @Range.Integer(min = 0, max = 255)
         int range = 111;
@@ -133,7 +133,7 @@ class ConfigTest {
 
             List<String> list = List.of("Carlotta", "Encore", "Camellya", "Phoebe");
 
-            ResourceLocation resourceLocation = ResourceLocation.fromNamespaceAndPath("abelia", "banana");
+            ResourceLocation resourceLocation = new ResourceLocation("abelia", "banana");
         }
 
         public enum EnumTest implements NameableEnum {

@@ -1,5 +1,6 @@
 package dev.aika.abelia.fabric;
 
+import dev.aika.abelia.Abelia;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -19,6 +20,8 @@ public class AbeliaMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+        if (mixinClassName.startsWith("dev.aika.abelia.fabric.mixin.")) return true;
+        Abelia.LOGGER.warn("Invalid mixin class: {}", mixinClassName);
         return false;
     }
 

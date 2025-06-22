@@ -69,13 +69,13 @@ subprojects {
     java {
         withSourcesJar()
 
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     tasks.withType<JavaCompile> {
         options.encoding = "UTF-8"
-        options.release.set(21)
+        options.release.set(17)
     }
 
     tasks.processResources {
@@ -86,7 +86,7 @@ subprojects {
     publishing {
         publications {
             create<MavenPublication>("gitea") {
-                artifactId = base.archivesName.get()
+                artifactId = "${base.archivesName.get()}-${mod.minecraft_version}"
                 version = mod.version
 
                 from(components["java"])

@@ -5,51 +5,51 @@ plugins {
     id("me.shedaniel.unified-publishing") version "0.1.+"
 }
 
+loom {
+    forge {
+        mixinConfig("abelia.mixins.json")
+        mixinConfig("abelia-common.mixins.json")
+    }
+}
+
 architectury {
     platformSetupLoomIde()
-    neoForge()
+    forge()
 }
 
 val common: Configuration by configurations.creating
 val shadowBundle: Configuration by configurations.creating
-val developmentNeoForge: Configuration by configurations.getting
+val developmentForge: Configuration by configurations.getting
 
 configurations {
     compileOnly.configure { extendsFrom(common) }
     runtimeOnly.configure { extendsFrom(common) }
-    developmentNeoForge.extendsFrom(common)
+    developmentForge.extendsFrom(common)
 
     shadowBundle.isCanBeResolved = true
     shadowBundle.isCanBeConsumed = false
 }
 
-repositories {
-    maven {
-        name = "NeoForged"
-        url = uri("https://maven.neoforged.net/releases")
-    }
-}
-
 dependencies {
-    neoForge("net.neoforged:neoforge:${mod.prop("neoforge_version")}")
+    forge("net.minecraftforge:forge:${mod.prop("forge_version")}")
 
     shadowBundle("org.yaml:snakeyaml:${mod.dep("snakeyaml_version")}")
     forgeRuntimeLibrary("org.yaml:snakeyaml:${mod.dep("snakeyaml_version")}")
 
     modImplementation(
-        group = "me.shedaniel.cloth", name = "cloth-config-neoforge",
+        group = "me.shedaniel.cloth", name = "cloth-config-forge",
         version = mod.dep("cloth_config")
     ) { exclude(group = "org.yaml", module = "snakeyaml") }
 
     common(project(path = ":common", configuration = "namedElements")) { isTransitive = false }
-    shadowBundle(project(path = ":common", configuration = "transformProductionNeoForge"))
+    shadowBundle(project(path = ":common", configuration = "transformProductionForge"))
 }
 
 tasks {
     processResources {
         inputs.property("version", project.version)
 
-        filesMatching("META-INF/neoforge.mods.toml") {
+        filesMatching("META-INF/mods.toml") {
             expand("version" to project.version)
         }
         from(rootProject.file("assets/logo.png")) {
@@ -74,13 +74,12 @@ tasks {
     }
 }
 
-
 unifiedPublishing {
     project {
         version.set(mod.version)
         displayName.set("v${mod.version}")
         gameVersions.add(mod.minecraft_version)
-        gameLoaders.add("neoforge")
+        gameLoaders.add("forge")
         releaseType.set(mod.release_type)
 
         mainPublication.set(tasks.remapJar.flatMap { it.archiveFile })

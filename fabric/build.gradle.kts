@@ -36,11 +36,13 @@ dependencies {
     shadowBundle("org.yaml:snakeyaml:${mod.dep("snakeyaml_version")}")
     implementation("org.yaml:snakeyaml:${mod.dep("snakeyaml_version")}")
 
+    modLocalRuntime("net.fabricmc.fabric-api:fabric-api:0.92.2+1.20.1")
+
     modImplementation(
         group = "me.shedaniel.cloth", name = "cloth-config-fabric",
         version = mod.dep("cloth_config")
     ) { exclude(group = "org.yaml", module = "snakeyaml") }
-    modImplementation("com.terraformersmc:modmenu:11.0.1")
+    modImplementation("com.terraformersmc:modmenu:7.2.2")
 
     common(project(path = ":common", configuration = "namedElements")) { isTransitive = false }
     shadowBundle(project(path = ":common", configuration = "transformProductionFabric"))

@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[2,)"
+loaderVersion = "[47,)"
 issueTrackerURL = "https://github.com/gizmo-ds/abelia-mod/issues"
 license = "EPL-2.0"
 
@@ -7,36 +7,30 @@ license = "EPL-2.0"
 modId = "abelia"
 version = "${version}"
 displayName = "Abelia"
-displayURL = "https://github.com/gizmo-ds/abelia-mod"
 authors = "Gizmo"
 description = '''
 Abelia Lib
 '''
 logoFile = "abelia-logo.png"
+displayURL = "https://github.com/gizmo-ds/abelia-mod"
 
 [[dependencies.abelia]]
-modId = "neoforge"
-type = "required"
-versionRange = "[21,)"
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.abelia]]
 modId = "minecraft"
-type = "required"
-versionRange = "[1.21,)"
+mandatory = true
+versionRange = "[1.20.1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.abelia]]
 modId = "cloth_config"
-type = "optional"
-versionRange = "[15.0.130,)"
+mandatory = false
+versionRange = "[11.,)"
 ordering = "NONE"
 side = "CLIENT"
-
-[[mixins]]
-config = "abelia.mixins.json"
-
-[[mixins]]
-config = "abelia-common.mixins.json"

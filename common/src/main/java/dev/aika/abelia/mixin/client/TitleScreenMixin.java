@@ -2,6 +2,7 @@ package dev.aika.abelia.mixin.client;
 
 import com.mojang.realmsclient.gui.screens.RealmsNotificationsScreen;
 import dev.aika.abelia.Abelia;
+import dev.aika.abelia.api.LoaderType;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.TitleScreen;
@@ -29,6 +30,7 @@ public abstract class TitleScreenMixin {
             target = "Lnet/minecraft/client/gui/screens/TitleScreen;createNormalMenuOptions(II)V"),
             ordinal = 3)
     public int fixButtonsPos(int value) {
+        if (LoaderType.isForge()) return value;
         return Abelia.CONFIG.get().isHideRealmsButton() ? value - 24 : value;
     }
 

@@ -23,7 +23,7 @@ public class TextColorCodec implements ConfigCodec<TextColor, String> {
         String value = (String) serialized;
         if (value.equals("null") || value.isEmpty()) return null;
         try {
-            return TextColor.parseColor(value).getOrThrow();
+            return TextColor.parseColor(value);
         } catch (Exception e) {
             throw new DeserializationException("Could not deserialize TextColor: " + serialized, e);
         }

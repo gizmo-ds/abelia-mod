@@ -9,4 +9,4 @@ pluginManagement {
 
 rootProject.name = "abelia"
 
-include("common", "fabric", "neoforge")
+include("common", "fabric", "forge")
