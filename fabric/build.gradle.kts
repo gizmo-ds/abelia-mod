@@ -40,7 +40,7 @@ dependencies {
         group = "me.shedaniel.cloth", name = "cloth-config-fabric",
         version = mod.dep("cloth_config")
     ) { exclude(group = "org.yaml", module = "snakeyaml") }
-    modImplementation("com.terraformersmc:modmenu:${mod.dep("modmenu_version")}")
+    modImplementation("com.terraformersmc:modmenu:11.0.1")
 
     common(project(path = ":common", configuration = "namedElements")) { isTransitive = false }
     shadowBundle(project(path = ":common", configuration = "transformProductionFabric"))
