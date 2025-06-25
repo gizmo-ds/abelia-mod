@@ -243,8 +243,8 @@ public class ClientConfigManager<T extends ConfigInitializer> {
             final LoaderType currentLoader = LoaderType.getCurrentLoader();
             for (final Element element : categories.get(categoryKey)) {
                 if (element.field.isAnnotationPresent(LoaderSpecific.class)) {
-                    if (!Arrays.stream(element.field.getAnnotation(LoaderSpecific.class).value())
-                            .allMatch(value -> value.equals(currentLoader)))
+                    if (Arrays.stream(element.field.getAnnotation(LoaderSpecific.class).value())
+                            .noneMatch(value -> value.equals(currentLoader)))
                         continue;
                 }
 
