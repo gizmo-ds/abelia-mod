@@ -94,6 +94,7 @@ tasks.register<net.darkhax.curseforgegradle.TaskPublishCurseForge>("curseforge")
     mainFile.gameVersions.addAll(mod.game_version_supports)
     mainFile.addModLoader(loom.platform.get().displayName())
     mainFile.addOptional("cloth-config")
+    mainFile.changelog = ""
 }
 
 val modrinthToken: String = env.fetch("MODRINTH_TOKEN", "").trim()
