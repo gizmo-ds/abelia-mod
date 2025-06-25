@@ -1,7 +1,9 @@
 # Abelia 🌱
 
-## Sponsor ❤️
+A cross-platform library mod serving as a dependency for other mods.
 
-Enjoy `Abelia` ? Support the author on [AFDIAN](https://afdian.com/a/gizmo) !
+It provides an API for reading and writing configuration files based on annotations and can generate client
+configuration screens using the Cloth Config API.
 
-[![金主爸爸](https://afdian-connect.deno.dev/sponsor.svg)](https://afdian.com/a/gizmo)
+It also includes some simple utility features, such as hiding the Realms button and removing first-person fire overlay
+effects when the player has fire resistance.
