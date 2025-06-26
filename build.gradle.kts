@@ -50,8 +50,8 @@ subprojects {
             content { includeGroup("maven.modrinth") }
         }
         maven {
-            name = "Gitea"
-            url = uri("https://git.aika.dev/api/packages/gizmo/maven")
+            name = "AIKA Repository"
+            url = uri("https://maven.aika.dev/releases")
         }
     }
 
@@ -85,26 +85,29 @@ subprojects {
 
     publishing {
         publications {
-            create<MavenPublication>("gitea") {
-                artifactId = "${base.archivesName.get()}-${mod.minecraft_version}"
-                version = mod.version
+            create<MavenPublication>("AIKA") {
+                artifactId = base.archivesName.get()
+                version = "${mod.minecraft_version}-${mod.version}"
 
                 from(components["java"])
             }
         }
 
         repositories {
-            val giteaToken: String = env.fetch("GITEA_TOKEN", "").trim()
-            if (giteaToken.isNotEmpty()) {
+            val mavenUsername: String = env.fetch("MAVEN_USERNAME", "").trim()
+            val mavenToken: String = env.fetch("MAVEN_TOKEN", "").trim()
+            if (mavenUsername.isNotEmpty() && mavenToken.isNotEmpty()) {
                 maven {
-                    name = "Gitea"
-                    url = uri("https://git.aika.dev/api/packages/gizmo/maven")
+                    name = "AIKA"
+                    url = if (mod.version.endsWith("-SNAPSHOT"))
+                        uri("https://maven.aika.dev/snapshots")
+                    else uri("https://maven.aika.dev/releases")
 
-                    credentials(HttpHeaderCredentials::class) {
-                        name = "Authorization"
-                        value = "token $giteaToken"
+                    credentials(PasswordCredentials::class) {
+                        username = mavenUsername
+                        password = mavenToken
                     }
-                    authentication { create("header", HttpHeaderAuthentication::class) }
+                    authentication { create<BasicAuthentication>("basic") }
                 }
             }
         }
